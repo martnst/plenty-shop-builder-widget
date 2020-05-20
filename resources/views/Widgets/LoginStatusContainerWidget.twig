@@ -1,0 +1,29 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+{% set desiredLoginStatus = widget.settings.desiredLoginStatus.mobile %}
+
+{{ Twig.set("desiredLoginStatus", desiredLoginStatus | json_encode) }}
+{{ Twig.if("services.authentication.isLoggedIn()") }}
+  {{ Twig.set("actualLoginStatus", "logged-in" | json_encode )}}
+{{ Twig.else() }}
+  {{ Twig.set("actualLoginStatus", "logged-out" | json_encode)}}
+{{ Twig.endif() }}
+
+<div class="widget widget-login-status {{ desiredLoginStatus }}">
+  <div data-builder-child-container="body">
+    {{ WidgetHelper.editableTwig(isPreview, children.body) }}
+  </div>
+  {{ Twig.if("desiredLoginStatus == actualLoginStatus or #{ isPreview | json_encode }") }}
+    <div style="background: green; color: white">
+      visible box
+    </div>
+  {{ Twig.else() }}
+    <!--container is hidden as user is not {{ desiredLoginStatus }} -->
+    <div style="background: red; color: white">
+      hidden box
+    </div>
+  {{ Twig.endif() }}
+  {% if isPreview %}
+    <div style="color: gray; font-size: xx-small;">Login Status Container: Visible for {{ desiredLoginStatus }} Users</div>
+  {% endif %} 
+</div>

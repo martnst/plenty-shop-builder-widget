@@ -1,0 +1,34 @@
+[
+    {
+      "identifier": "MartnWidget::LoginStatusContainerWidget",
+      "label": "Widget.wdigetLabel",
+      "previewImageURL": "/images/preview-icon.svg",
+      "type": "structure",
+      "categories": ["structure"],
+      "position": 1050,
+      "widgetClass": "MartnWidget\\Widgets\\LoginStatusContainerWidget",
+      "settings": {
+        "desiredLoginStatus": {
+          "type": "select",
+          "required": true,
+          "defaultValue": "logged-in",
+          "options": {
+              "name": "Widget.desiredLoginStatusLabel",
+              "tooltip": "Widget.desiredLoginStatusTooltip",
+              "listBoxValues": [
+                  {
+                      "value": "logged-out",
+                      "caption": "Widget.loginStatusOut",
+                      "position": 0
+                  },
+                  {
+                      "value": "logged-in",
+                      "caption": "Widget.loginStatusIn",
+                      "position": 1
+                  }                  
+              ]
+          }
+      }
+    }
+  }
+]
